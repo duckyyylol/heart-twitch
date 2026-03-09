@@ -272,7 +272,7 @@ app.get("/auth", async (req, res) => {
         }
     } else {
 
-        res.redirect(`https://id.twitch.tv/oauth2/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.WEB_APP_URL}/auth&scope=${scopes.join(" ")}&response_type=code`)
+        res.redirect(`https://id.twitch.tv/oauth2/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.WEB_APP_URL}/auth&force_verify=true&scope=${scopes.join(" ")}&response_type=code`)
     }
 })
 
