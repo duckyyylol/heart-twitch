@@ -53,7 +53,7 @@ export function setRewardsInQuestion(t: boolean): void {
     rewardsInQuestion = t;
 }
 
-let scopes = ["user:write:chat", "user:read:chat", "chat:read", "chat:edit", "user:bot", "channel:bot"]
+let scopes = ["user:write:chat", "user:read:chat", "chat:read", "chat:edit", "user:bot", "channel:bot", "user:manage:whispers"]
 
 // const authProvider = new AppTokenAuthProvider(process.env.CLIENT_ID, process.env.CLIENT_SECRET)
 
@@ -174,6 +174,9 @@ async function initChat(c: ChatClient): Promise<void> {
 
                     await reply(channel, `🎈 The bot has been added to your channel!`, msg.id)
                     await say(user, `🎈 2d Balloon Dog floated in! 💎 The bot may get caught by spam filters. Add VIP or Mod to the bot to bypass this. ❗ @${user} or a moderator must run !setup to begin using song request features.`, null, false)
+                    apiClient.whispers.sendWhisper(process.env.BOT_USER_ID, msg.userInfo.userId, `Thank you for adding 2d Balloon Dog! (the coolest bot in the world) Please log in at ${process.env.SPOOFIFY_WEB_URL}/auth to start using the bot! You can run !leave in the same channel to deactivate the bot. Happy listening!`).then(() => {}).catch(e => {
+                        console.log(e)
+                    })
                 }
 
             } else if (text.toLowerCase().trim() === "!leave") {
