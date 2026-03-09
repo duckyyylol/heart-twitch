@@ -1,0 +1,33 @@
+{
+  "name": "heart-tw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon --exec ts-node src/index.ts --ext ts",
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@twurple/api": "^8.0.3",
+    "@twurple/auth": "^8.0.3",
+    "@twurple/chat": "^8.0.3",
+    "@twurple/eventsub-ws": "^8.0.3",
+    "@types/axios": "^0.9.36",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.3.3",
+    "axios": "^1.13.6",
+    "better-sqlite3": "^12.6.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "drizzle-kit": "^0.31.8",
+    "drizzle-orm": "^0.45.1",
+    "express": "^5.2.1"
+  }
+}
