@@ -222,7 +222,7 @@ app.get("/auth", async (req, res) => {
     if (req.query.code) {
         let params = new URLSearchParams();
         params.append("grant_type", "authorization_code")
-        params.append("redirect_uri", `http://localhost:${PORT}/auth`)
+        params.append("redirect_uri", `${process.env.WEB_APP_URL}/auth`)
         params.append("code", req.query.code as string);
         params.append("client_id", process.env.CLIENT_ID)
         params.append("client_secret", process.env.CLIENT_SECRET)
