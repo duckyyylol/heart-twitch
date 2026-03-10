@@ -39,6 +39,6 @@ export function formatArtists(artists: SpotifyArtist[]): string {
 }
 
 export async function addToQueue(uri: string): Promise<boolean> {
-    const res = await axios.post(`${process.env.SPOOFIFY_WEB_URL}/api/spotify/queue/add-track/${uri}`, null, { headers: { "api-key": process.env.SPOOFIFY_API_KEY } });
+    const res = await axios.post(`${process.env.SPOOFIFY_WEB_URL}/api/spotify/queue/add-track/${uri}`, null, { headers: { "api-key": process.env.SPOOFIFY_API_KEY } }).catch(e => console.log(e));
     return res ? true : false;
 }
