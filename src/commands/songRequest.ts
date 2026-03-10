@@ -28,9 +28,7 @@ const songRequestCommand = async (hasAuthority: boolean, channel: string, user: 
 
         let addingMsgId = await reply(channel, `Working on it...`, searchingMsgId);
 
-        let added = await addToQueue(result.uri).catch(async e => {
-                await reply(channel, `Failed to add "${result.name} - ${formatArtists(result.artists)}" to the queue`, addingMsgId)
-        });
+        let added = await addToQueue(result.uri)
 
         setTimeout(async () => {
             if (added) {
