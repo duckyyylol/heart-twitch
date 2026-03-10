@@ -25,9 +25,12 @@ const songRequestCommand = async (hasAuthority: boolean, channel: string, user: 
 
     search(query).then(async searchResults => {
         let result = searchResults[0];
-        let addingMsgId = await reply(channel, `Adding "${result.name} - ${formatArtists(result.artists)}" to the queue...`, searchingMsgId);
 
-        let added = await addToQueue(result.uri);
+        let addingMsgId = await reply(channel, `Working on it...`, searchingMsgId);
+
+        let added = await addToQueue(result.uri).catch(async e => {
+                await reply(channel, `Failed to add "${result.name} - ${formatArtists(result.artists)}" to the queue`, addingMsgId)
+        });
 
         setTimeout(async () => {
             if (added) {
@@ -37,7 +40,9 @@ const songRequestCommand = async (hasAuthority: boolean, channel: string, user: 
             }
         }, 1e3)
     }).catch(async e => {
-        await reply(channel, `Found 0 results for "${query}"`, msg.id)
+        setTimeout(async () => {
+            await reply(channel, `Found 0 results for "${query}"`, msg.id)
+        },1e3)
     });
 
 }
