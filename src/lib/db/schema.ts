@@ -23,4 +23,4 @@ export const rewards = sqliteTable("rewards", {
 	channelId: text("channelId").notNull(),
 	cost: integer("cost").notNull(),
 	trigger: integer("trigger").notNull().default(DBPointRewardTriggers.SONG_REQUEST)
-})
+});

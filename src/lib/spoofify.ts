@@ -1,5 +1,16 @@
-import { ApiQueueItem, SearchedTrack, SpotifyArtist, SpotifyTrack } from "./types";
-import axios from "axios"
+import { ApiQueueItem, SearchedTrack, SpotifyArtist, SpotifyTrack, SpotifyUser } from "./types";
+import axios from "axios";
+
+export async function getCurrentUser(): Promise<SpotifyUser | null> {
+    try {
+        let np: SpotifyUser | null = (await (axios.get(`${process.env.SPOOFIFY_WEB_URL}/api/users/@me`, {headers: {"api-key": process.env.SPOOFIFY_API_KEY}}))).data as SpotifyUser;
+        return np;
+    } catch(e) {
+        console.log(e)
+        console.log("CAUGHT")
+        return null;
+    }
+}
 
 export async function getNowPlaying(): Promise<SearchedTrack | null> {
     console.log(`${process.env.SPOOFIFY_WEB_URL}/api/now-playing`)

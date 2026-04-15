@@ -3,6 +3,7 @@ import { permissionMessage, reply, say } from "..";
 import { addReward, rewardIsSongRequest } from "../lib/db/rewards";
 import { getAllChannels, setUseRequestCommand } from "../lib/db/channels";
 import { DBPointRewardTriggers } from "../lib/types";
+import { getCurrentUser } from "../lib/spoofify";
 
 const setupCommand = async (hasAuthority: boolean, channel: string, user: string, text: string, msg: ChatMessage, args: string[], client: ChatClient) => {
     let step = 0;
@@ -21,6 +22,8 @@ const setupCommand = async (hasAuthority: boolean, channel: string, user: string
         return;
     }
 
+    let spoofUser = await getCurrentUser();
+    if(!spoofUser) return await reply(channel, `The bot isn't authorized yet. Please head to ${process.env.SPOOFIFY_WEB_URL}/auth to log in with Spotify! Please run this command again once you've logged in.`, msg.id);
 
 
     setupUser = msg.userInfo.userId;
